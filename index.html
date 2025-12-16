@@ -80,7 +80,7 @@
             justify-content: space-between;
             max-width: 1400px;
             width: 100%;
-            gap: 4rem;
+            gap: 2rem;
             position: relative;
             z-index: 2;
         }
@@ -1176,7 +1176,7 @@
             <div class="connect-column">
                 <h3>Speaking & Events</h3>
                 <p>Event dates for Spring 2026 coming soon.</p>
-                <p>For speaking inquiries, please <a href="mailto:ben@benjaminsiegel.net">get in touch</a>.</p>
+                <p>For speaking inquiries, please <a href="mailto:siegelb@bu.edu?subject=Markets%20of%20Pain%20-%20Inquiry">get in touch</a>.</p>
             </div>
             <div class="connect-column">
                 <h3>Media & Instructors</h3>
@@ -1424,6 +1424,21 @@
         ];
 
         let currentIndex = 0;
+        const preloadedImages = new Set();
+
+        // Preload images for smoother transitions
+        function preloadImages(startIndex, count = 5) {
+            for (let i = 0; i < count; i++) {
+                const index = (startIndex + i) % slides.length;
+                const imageSrc = slides[index].image;
+
+                if (!preloadedImages.has(imageSrc)) {
+                    const img = new Image();
+                    img.src = imageSrc;
+                    preloadedImages.add(imageSrc);
+                }
+            }
+        }
 
         // Initialize timeline dots
         function initTimeline() {
@@ -1468,6 +1483,9 @@
 
                 // Update carousel images
                 updateCarousel();
+
+                // Preload upcoming images
+                preloadImages(currentIndex + 1, 5);
             }, 200);
         }
 
@@ -1538,6 +1556,8 @@
             initTimeline();
             document.getElementById('totalNum').textContent = String(slides.length).padStart(2, '0');
             updateSlide();
+            // Preload initial batch of images
+            preloadImages(0, 10);
         }
     </script>
 </body>
