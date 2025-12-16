@@ -180,6 +180,33 @@
             color: var(--black);
         }
 
+        .hero-order-links {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            animation: fadeIn 1.5s ease-out 0.8s both;
+        }
+
+        .hero-order-links a {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            border: 1px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .hero-order-links a:hover {
+            background: var(--green);
+            color: var(--black);
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 2.5rem;
@@ -1050,6 +1077,11 @@
                 <p class="subtitle">Opium, Capitalism, and the Global History of Painkillers</p>
                 <div class="hero-cta">
                     <a href="#story">Explore the Story</a>
+                </div>
+                <div class="hero-order-links">
+                    <a href="https://www.amazon.com/Markets-Pain-Capitalism-History-Painkillers/dp/0197527825" target="_blank" rel="noopener">Order on Amazon</a>
+                    <a href="https://bookshop.org/p/books/markets-of-pain-opium-capitalism-and-the-global-history-of-painkillers-associate-professor-of-history-benjamin-robert-siegel/e89ecfc619100379?ean=9780197527825&next=t" target="_blank" rel="noopener">Order on Bookshop.org</a>
+                    <a href="https://global.oup.com/academic/product/markets-of-pain-9780197527825" target="_blank" rel="noopener">Order from Oxford USA</a>
                 </div>
             </div>
             <div class="hero-image">
