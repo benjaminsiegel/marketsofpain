@@ -3,231 +3,1353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markets of Pain - A Historical Investigation</title>
+    <title>Markets of Pain | Benjamin Robert Siegel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #000000;
+            --deep-black: #0a0a0a;
+            --green: #8fa843;
+            --green-light: #a5bc5a;
+            --cream: #f5f0e8;
+            --cream-dark: #e8e0d0;
+            --text-muted: rgba(245, 240, 232, 0.6);
+            --text-dim: rgba(245, 240, 232, 0.4);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
+            font-family: 'Libre Baskerville', Georgia, serif;
+            background-color: var(--black);
+            color: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        header {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            overflow: hidden;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
-        }
-
-        .header-image {
+        /* Subtle noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            pointer-events: none;
+            opacity: 0.025;
+            z-index: 1000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Hero Section - Immersive Design */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 75% 50%, rgba(122, 154, 61, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        .header-content {
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            width: 100%;
+            gap: 4rem;
             position: relative;
             z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            text-align: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
         }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
+        .hero-text {
+            text-align: left;
+            flex: 0 1 550px;
+        }
+
+        .hero-image {
+            flex: 0 1 500px;
+            max-width: 500px;
+            animation: fadeIn 2s ease-out 0.3s both;
+            position: relative;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(ellipse at center, transparent 30%, var(--black) 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            opacity: 0.85;
+            filter: brightness(0.9) saturate(0.95);
+            position: relative;
+            z-index: 0;
+        }
+
+        .author-name {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 400;
+            line-height: 0.85;
+            color: var(--cream);
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .book-title .of {
+            display: block;
+            font-size: 0.65em;
+            margin-top: -0.1em;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            font-style: italic;
-            font-weight: 300;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--green);
+            text-transform: uppercase;
+            max-width: 550px;
+            margin-top: 2rem;
+            animation: fadeIn 1.5s ease-out 0.3s both;
         }
 
-        .container {
-            max-width: 1200px;
+        .hero-cta {
+            margin-top: 3rem;
+            animation: fadeIn 1.5s ease-out 0.6s both;
+        }
+
+        .hero-cta a {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border: 1px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta a:hover {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite, fadeIn 1.5s ease-out 1s both;
+            z-index: 10;
+        }
+
+        .scroll-indicator svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--text-muted);
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 400;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subheader {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Slideshow Section */
+        .narrative-section {
+            padding: 4rem 0;
+            background: var(--black);
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
             margin: 0 auto;
-            padding: 2rem;
         }
 
-        .author-section {
-            background: white;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .slide-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide-image-wrapper {
+            position: relative;
+            width: 100%;
+            background: var(--deep-black);
+            padding: 2rem 0;
+        }
+
+        .carousel-track {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 0 1rem;
+            perspective: 1000px;
+        }
+
+        .carousel-slide {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide.side {
+            width: 18%;
+            opacity: 0.4;
+            cursor: pointer;
+            transform: scale(0.9);
+            filter: brightness(0.7);
+        }
+
+        .carousel-slide.side:hover {
+            opacity: 0.6;
+            transform: scale(0.93);
+            filter: brightness(0.85);
+        }
+
+        .carousel-slide.side#prevSlide {
+            transform-origin: right center;
+        }
+
+        .carousel-slide.side#nextSlide {
+            transform-origin: left center;
+        }
+
+        .carousel-slide.center {
+            width: 58%;
+            transform: scale(1);
+            filter: brightness(1);
+        }
+
+        /* Slide transition animation */
+        .carousel-slide.sliding-left {
+            animation: slideLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide.sliding-right {
+            animation: slideRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideLeft {
+            0% { transform: translateX(20px); opacity: 0.5; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideRight {
+            0% { transform: translateX(-20px); opacity: 0.5; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, rgba(143, 168, 67, 0.1), rgba(122, 154, 61, 0.03));
+            border: 1px solid rgba(143, 168, 67, 0.2);
+            color: var(--text-dim);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 65vh;
+            object-fit: contain;
+            transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide.side img {
+            opacity: 0.5;
+        }
+
+        .carousel-slide.center img {
+            opacity: 1;
+        }
+
+        .slide-placeholder .num {
+            font-size: 2.5rem;
+            color: rgba(143, 168, 67, 0.4);
+            font-style: normal;
+            margin-bottom: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Caption below image */
+        .slide-caption {
+            padding: 2.5rem 2rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .slide-chapter {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.75rem;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-chapter.transitioning {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .slide-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+        }
+
+        .slide-title.transitioning {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .slide-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--cream-dark);
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .slide-text.transitioning {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .slide-credit {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 1;
+            transition: opacity 0.4s ease 0.15s;
+        }
+
+        .slide-credit.transitioning {
+            opacity: 0;
+        }
+
+        /* Slide Navigation */
+        .slide-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(143, 168, 67, 0.15);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .slide-nav-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--green);
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .slide-nav-btn:hover {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .slide-nav-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .slide-counter {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .slide-counter .current {
+            color: var(--cream);
+            font-size: 1.3rem;
+        }
+
+        /* Timeline dots */
+        .timeline-dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            padding: 1rem 2rem 2rem;
             flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(143, 168, 67, 0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .timeline-dot:hover {
+            background: var(--green-light);
+        }
+
+        .timeline-dot.active {
+            background: var(--green);
+            transform: scale(1.4);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background: var(--deep-black);
+        }
+
+        .about-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--cream-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text p:first-of-type::first-letter {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 4rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.12em;
+            margin-top: 0.08em;
+            color: var(--green);
+        }
+
+        /* Blurbs Section */
+        .blurbs-section {
+            padding: 5rem 2rem;
+            background: var(--black);
+        }
+
+        .blurbs-container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .blurbs-header {
+            margin-bottom: 3rem;
+        }
+
+        .blurb {
+            margin-bottom: 2.5rem;
+            padding: 2rem 2.5rem;
+            border-left: 2px solid var(--green);
+            background: linear-gradient(to right, rgba(143, 168, 67, 0.04), transparent);
+        }
+
+        .blurb:last-child {
+            margin-bottom: 0;
+        }
+
+        .blurb-text {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.65;
+            color: var(--cream);
+            margin-bottom: 1.25rem;
+        }
+
+        .blurb-author {
+            font-size: 0.95rem;
+            color: var(--green);
+        }
+
+        .blurb-author strong {
+            color: var(--cream);
+            font-weight: 400;
+        }
+
+        .blurb-author a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .blurb-author a:hover {
+            color: var(--green);
+        }
+
+        /* Author Section */
+        .author-section {
+            padding: 5rem 2rem;
+            background: var(--deep-black);
+        }
+
+        .author-container {
+            max-width: 950px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
         }
 
         .author-photo {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            flex: 0 0 280px;
+        }
+
+        .author-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            filter: grayscale(15%);
         }
 
         .author-bio {
             flex: 1;
-            min-width: 300px;
         }
 
         .author-bio h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
         }
 
         .author-bio p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.8;
-            color: #555;
+            color: var(--cream-dark);
+            margin-bottom: 1.25rem;
         }
 
-        .content-section {
-            background: white;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .author-bio p:last-child {
+            margin-bottom: 0;
         }
 
-        .content-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 0.5rem;
+        .author-bio a {
+            color: var(--green);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        .slide-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .slide-image {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .slide-caption {
-            margin-top: 1rem;
-            font-style: italic;
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .intro-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+        .author-bio a:hover {
+            color: var(--green-light);
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .author-section {
+            .author-container {
                 flex-direction: column;
                 text-align: center;
             }
 
             .author-photo {
-                width: 200px;
-                height: 200px;
+                flex: none;
+                max-width: 220px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Connect Section - Three Columns */
+        .connect-section {
+            padding: 5rem 2rem;
+            background: var(--black);
+        }
+
+        .connect-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .connect-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .connect-column h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(143, 168, 67, 0.3);
+        }
+
+        .connect-column p {
+            color: var(--cream-dark);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .event-item {
+            margin-bottom: 1.25rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(143, 168, 67, 0.3);
+        }
+
+        .event-date {
+            font-size: 0.82rem;
+            color: var(--green);
+            margin-bottom: 0.2rem;
+        }
+
+        .event-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.05rem;
+            color: var(--cream);
+            margin-bottom: 0.2rem;
+        }
+
+        .event-location {
+            font-size: 0.85rem;
+            color: var(--cream-dark);
+        }
+
+        .connect-column a {
+            color: var(--green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .connect-column a:hover {
+            color: var(--green-light);
+        }
+
+        .press-kit-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border: 1px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .press-kit-link:hover {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .press-kit-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Substack embed styling */
+        .substack-wrapper {
+            position: relative;
+            background: var(--deep-black);
+            border: 1px solid rgba(143, 168, 67, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .substack-wrapper iframe {
+            display: block;
+            width: 100%;
+            min-height: 280px;
+            border: none;
+            filter: invert(0.92) hue-rotate(180deg);
+        }
+
+        @media (max-width: 900px) {
+            .connect-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 500px;
+            }
+
+            .connect-column {
+                text-align: center;
+            }
+
+            .event-item {
+                text-align: left;
+            }
+        }
+
+        /* Order Section */
+        .order-section {
+            padding: 5rem 2rem;
+            background: var(--deep-black);
+            text-align: center;
+        }
+
+        .order-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .order-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .order-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .order-link {
+            padding: 0.9rem 1.8rem;
+            border: 1px solid var(--green);
+            color: var(--green);
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            transition: all 0.3s ease;
+        }
+
+        .order-link:hover {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .order-link.primary {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .order-link.primary:hover {
+            background: var(--green-light);
+        }
+
+        /* Details Section */
+        .details-section {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(143, 168, 67, 0.15);
+            background: var(--black);
+        }
+
+        .details-container {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .detail-item {
+            padding: 0.5rem;
+        }
+
+        .detail-label {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-value {
+            font-size: 0.95rem;
+            color: var(--cream);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background: var(--deep-black);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        footer a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--green);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-8px); }
+            60% { transform: translateX(-50%) translateY(-4px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .hero-container {
+                gap: 2rem;
+            }
+
+            .hero-text {
+                flex: 0 1 450px;
+            }
+
+            .hero-image {
+                flex: 0 1 400px;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                padding: 4rem 2rem;
+            }
+
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                text-align: center;
+                flex: none;
+                max-width: 100%;
+            }
+
+            .hero-image {
+                flex: none;
+                max-width: 320px;
+                order: -1;
+            }
+
+            .hero-image::before {
+                background: radial-gradient(ellipse at center, transparent 40%, var(--black) 75%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .book-title {
+                font-size: clamp(3rem, 14vw, 5rem);
+            }
+
+            .hero-image {
+                max-width: 260px;
+            }
+
+            .carousel-slide.side {
+                width: 15%;
+            }
+
+            .carousel-slide.center {
+                width: 66%;
+            }
+
+            .slide-caption {
+                padding: 2rem 1.5rem;
+            }
+
+            .slide-nav {
+                gap: 1rem;
+            }
+
+            .blurb {
+                padding: 1.5rem;
+            }
+
+            .blurb-text {
+                font-size: 1.1rem;
+            }
+
+            .details-container {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-header {
+                font-size: clamp(2rem, 8vw, 2.5rem);
+            }
+
+            .carousel-slide.side {
+                width: 12%;
+            }
+
+            .carousel-slide.center {
+                width: 72%;
+            }
+
+            .order-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .order-link {
+                width: 100%;
+                max-width: 280px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="images/poppy-header.jpg" alt="Opium Poppy" class="header-image">
-        <div class="header-content">
-            <h1>Markets of Pain</h1>
-            <p class="subtitle">Tracing the Historical Trade in Opium</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <p class="author-name">Benjamin Robert Siegel</p>
+                <h1 class="book-title">Markets<span class="of">of Pain</span></h1>
+                <p class="subtitle">Opium, Capitalism, and the Global History of Painkillers</p>
+                <div class="hero-cta">
+                    <a href="#story">Explore the Story</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/opium-poppy.png" alt="Opium poppy seed head">
+            </div>
         </div>
-    </header>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
 
-    <div class="container">
-        <section class="author-section">
-            <img src="images/author-photo.jpg" alt="Author Photo" class="author-photo">
+    <!-- Narrative Slideshow Section -->
+    <section id="story" class="narrative-section">
+        <div class="slideshow-container">
+            <div class="slide-main">
+                <div class="slide-image-wrapper">
+                    <div class="carousel-track">
+                        <div class="carousel-slide side" id="prevSlide">
+                            <div class="slide-placeholder">
+                                <span class="num">24</span>
+                                <span>Image</span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide center" id="currentSlide">
+                            <div class="slide-placeholder">
+                                <span class="num">01</span>
+                                <span>Image</span>
+                            </div>
+                        </div>
+                        <div class="carousel-slide side" id="nextSlide">
+                            <div class="slide-placeholder">
+                                <span class="num">02</span>
+                                <span>Image</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-caption">
+                    <p class="slide-chapter" id="slideChapter"></p>
+                    <h3 class="slide-title" id="slideTitle"></h3>
+                    <p class="slide-text" id="slideText"></p>
+                    <p class="slide-credit" id="slideCredit"></p>
+                </div>
+
+                <div class="slide-nav">
+                    <button class="slide-nav-btn" id="prevBtn" aria-label="Previous slide">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <span class="slide-counter"><span class="current" id="currentNum">01</span> / <span id="totalNum">24</span></span>
+                    <button class="slide-nav-btn" id="nextBtn" aria-label="Next slide">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="timeline-dots" id="timelineDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-header">
+                <p class="section-subheader">Oxford University Press, 2026</p>
+                <h2 class="section-header">About the Book</h2>
+            </div>
+            <div class="about-text">
+                <p><em>Markets of Pain</em> offers a sweeping history of the business of licit opium—following cultivators, merchants, scientists, and policymakers—and shows how this potent crop reshaped global trade, medicine, and geopolitics.</p>
+                <p>For centuries, opium has been a source of both profit and peril, its legacy entangled with addiction, imperialism, and the complex interplay of global trade and national development. While the illicit opium trade is infamous, the history of licit opium—how it was farmed, refined, and used to build modern medicine and shape state power—has remained largely untold.</p>
+                <p>Drawing on archival sources from Asia, Europe, and the United States, <em>Markets of Pain</em> traces the global arc of licit opium from poppy fields and processing plants in India, Turkey, and Australia to the clinics and laboratories of modern medicine. It shows how both the Ottoman Empire and the Turkish Republic treated the opium poppy as a national resource and a means of securing global stature. In postcolonial India, by contrast, nationalist leaders initially rejected opium's imperial legacy before embracing its strategic value amid the shifting currents of the Cold War.</p>
+                <p>At the heart of this story are the cultivators, scientists, bureaucrats, and policymakers who shaped the licit opium trade and grappled with its far-reaching consequences. Their work and visions demonstrate how colonial empires and postcolonial states helped forge the global pharmaceutical industry as it struggled to govern a drug it could not abandon.</p>
+                <p><em>Markets of Pain</em> reveals how a seemingly marginal crop became an unlikely engine of modernization, a tool of Cold War geopolitics, and a harbinger of today's global opioid crisis. Blending vivid scenes from opium's fields and factories with incisive analysis of scientific and diplomatic archives, Benjamin Robert Siegel recovers a buried history with urgent relevance for global supply chains, international power, and public health.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blurbs Section -->
+    <section class="blurbs-section">
+        <div class="blurbs-container">
+            <div class="blurbs-header">
+                <p class="section-subheader">Advance Praise</p>
+                <h2 class="section-header">Praise for Markets of Pain</h2>
+            </div>
+
+            <div class="blurb">
+                <p class="blurb-text">"Siegel turns opium history, a story dominated by prohibitionists and traffickers, into a parable of creative destruction. He shows how a peasant crop that sustained empires devolved into a 'zombie commodity' struggling to survive in a world transformed by capitalism and novel technologies. One puts this original, ambitious, and often surprising book down thinking about much more than opium."</p>
+                <p class="blurb-author">—<strong><a href="https://davidcourtwright.domains.unf.edu/" target="_blank" rel="noopener">David T. Courtwright</a></strong>, author of <em>Forces of Habit: Drugs and the Making of the Modern World</em></p>
+            </div>
+
+            <div class="blurb">
+                <p class="blurb-text">"With a fresh analysis of opium as a global agricultural commodity rather than as a moral object, Markets of Pain reveals how the age of empires lastingly shaped a political economy that delivered too many opioids to some, and not enough to others."</p>
+                <p class="blurb-author">—<strong><a href="https://arts-sciences.buffalo.edu/history/faculty/faculty-directory/herzberg-david.html" target="_blank" rel="noopener">David Herzberg</a></strong>, author of <em>White Market Drugs: Big Pharma and the Hidden History of Addiction in America</em></p>
+            </div>
+
+            <div class="blurb">
+                <p class="blurb-text">"From poppy fields to pharmaceutical labs, Siegel's ambitious book shows us how marginalized opium-producing peasants were not just tethered to but were foundational to the modern global pharmaceutical industry. Going beyond pharmaceutical boardrooms and the crisis ravaging American streets, Markets of Pain introduces us to a different drug supply chain. This book is essential reading to understand how the centuries-old, insatiable demand for opium and its derivatives has a longer and broader history."</p>
+                <p class="blurb-author">—<strong><a href="https://histsci.fas.harvard.edu/people/gabriela-soto-laveaga" target="_blank" rel="noopener">Gabriela Soto Laveaga</a></strong>, Harvard University</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Author Section -->
+    <section class="author-section">
+        <div class="author-container">
+            <div class="author-photo">
+                <img src="images/author-photo.jpg" alt="Benjamin Robert Siegel">
+            </div>
             <div class="author-bio">
                 <h2>About the Author</h2>
-                <p>
-                    This research explores the complex historical networks of the opium trade,
-                    examining the economic, social, and human dimensions of one of history's
-                    most controversial commodities. Through archival research and historical
-                    analysis, we trace the pathways of pain and profit that shaped empires
-                    and devastated communities.
-                </p>
+                <p><a href="http://www.benjaminsiegel.net" target="_blank" rel="noopener">Benjamin Siegel</a> is a writer and historian who uncovers how the things we consume—food, drugs, and other global commodities—have shaped modern life, from the power of states to the choices on our dinner plates. His work follows the systems behind agriculture, industry, and global trade to explain how empires ended, how markets were built, and how our most basic needs became global industries.</p>
+                <p>Across two decades of reporting and historical research, he has built a career tracing how global systems reshape the most intimate parts of human life. His first book, <a href="https://www.cambridge.org/core/books/hungry-nation/106C8887E38290B84E2A4952F78EBACE" target="_blank" rel="noopener"><em>Hungry Nation: Food, Famine, and the Making of Modern India</em></a> (Cambridge University Press, 2018), revealed how food lay at the heart of India's postcolonial nation-building project. He is now writing a global history of protein—how we produced and came to believe we need more of it, and the far-reaching consequences for our bodies, our politics, and our planet.</p>
+                <p>Benjamin Siegel is associate professor of history at Boston University.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="content-section">
-            <h2>The Historical Trade</h2>
-            <p class="intro-text">
-                The opium trade represents one of the most significant and troubling chapters
-                in the history of global commerce. From the poppy fields of India to the
-                factories of Patna, from the trading houses of London to the ports of China,
-                this trade created vast fortunes while inflicting immeasurable suffering.
-            </p>
-
-            <div class="slide-container">
-                <img src="images/sample-slide.jpg" alt="Historical Opium Factory Plan" class="slide-image">
-                <p class="slide-caption">
-                    General Plan of the Opium Factory at Patna - A key site in the colonial opium trade
-                </p>
+    <!-- Connect Section - Events, Media, Newsletter -->
+    <section class="connect-section">
+        <div class="connect-header">
+            <p class="section-subheader">Connect</p>
+        </div>
+        <div class="connect-container">
+            <div class="connect-column">
+                <h3>Speaking & Events</h3>
+                <p>Event dates for Spring 2026 coming soon.</p>
+                <p>For speaking inquiries, please <a href="mailto:ben@benjaminsiegel.net">get in touch</a>.</p>
             </div>
+            <div class="connect-column">
+                <h3>Media & Instructors</h3>
+                <p>Press materials including author photos and book description are available for journalists and event organizers.</p>
+                <p>Examination copies for course adoption available through Oxford University Press.</p>
+                <a href="marketsofpain.pdf" class="press-kit-link" download>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Press Kit
+                </a>
+            </div>
+            <div class="connect-column">
+                <h3>Stay Updated</h3>
+                <p>Be the first to know when the book is available.</p>
+                <p><a href="mailto:siegelb@bu.edu?subject=Keep%20me%20posted%20on%20Markets%20of%20Pain">Get updates via email</a></p>
+            </div>
+        </div>
+    </section>
 
-            <p class="intro-text">
-                Through careful examination of historical documents, factory plans, and trade
-                records, this project illuminates the infrastructure and mechanisms that
-                sustained this global trade network and its lasting impact on societies across
-                the world.
-            </p>
-        </section>
-    </div>
+    <!-- Order Section -->
+    <section class="order-section">
+        <div class="order-container">
+            <div class="order-header">
+                <p class="section-subheader">Available Spring 2026</p>
+                <h2 class="section-header">Order Your Copy</h2>
+            </div>
+            <div class="order-links">
+                <a href="https://global.oup.com/academic/product/markets-of-pain-9780197527825" class="order-link primary" target="_blank" rel="noopener">Oxford University Press</a>
+                <a href="https://www.amazon.com/Markets-Pain-Capitalism-History-Painkillers/dp/0197527825" class="order-link" target="_blank" rel="noopener">Amazon</a>
+                <a href="https://bookshop.org/p/books/markets-of-pain-opium-capitalism-and-the-global-history-of-painkillers-associate-professor-of-history-benjamin-robert-siegel/e89ecfc619100379?ean=9780197527825&next=t" class="order-link" target="_blank" rel="noopener">Bookshop.org</a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Details Section -->
+    <section class="details-section">
+        <div class="details-container">
+            <div class="detail-item">
+                <p class="detail-label">Publisher</p>
+                <p class="detail-value">Oxford University Press</p>
+            </div>
+            <div class="detail-item">
+                <p class="detail-label">Publication</p>
+                <p class="detail-value">Spring 2026</p>
+            </div>
+            <div class="detail-item">
+                <p class="detail-label">ISBN</p>
+                <p class="detail-value">978-0-19-752782-5</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Markets of Pain. All rights reserved.</p>
+        <p>© 2026 <a href="https://benjaminsiegel.net" target="_blank" rel="noopener">Benjamin Robert Siegel</a>. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Placeholder for slides data - you'll need to add your actual slide content
+        const slides = [
+            {
+                chapter: "Chapter One",
+                title: "Slide Title 1",
+                text: "Slide description text goes here.",
+                credit: "Image credit",
+                image: "images/slide-01.jpg"
+            },
+            // Add remaining 23 slides here
+        ];
+
+        let currentIndex = 0;
+
+        // Initialize timeline dots
+        function initTimeline() {
+            const dotsContainer = document.getElementById('timelineDots');
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'timeline-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        // Update slide display
+        function updateSlide() {
+            const current = slides[currentIndex];
+
+            // Add transition classes
+            document.getElementById('slideChapter').classList.add('transitioning');
+            document.getElementById('slideTitle').classList.add('transitioning');
+            document.getElementById('slideText').classList.add('transitioning');
+            document.getElementById('slideCredit').classList.add('transitioning');
+
+            setTimeout(() => {
+                // Update content
+                document.getElementById('slideChapter').textContent = current.chapter;
+                document.getElementById('slideTitle').textContent = current.title;
+                document.getElementById('slideText').textContent = current.text;
+                document.getElementById('slideCredit').textContent = current.credit;
+                document.getElementById('currentNum').textContent = String(currentIndex + 1).padStart(2, '0');
+
+                // Remove transition classes
+                document.getElementById('slideChapter').classList.remove('transitioning');
+                document.getElementById('slideTitle').classList.remove('transitioning');
+                document.getElementById('slideText').classList.remove('transitioning');
+                document.getElementById('slideCredit').classList.remove('transitioning');
+
+                // Update timeline dots
+                document.querySelectorAll('.timeline-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+
+                // Update carousel images
+                updateCarousel();
+            }, 200);
+        }
+
+        function updateCarousel() {
+            const prevIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+            const nextIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+
+            // Update image sources or placeholders
+            // This is simplified - you'll need to implement actual image loading
+            const prevSlide = document.getElementById('prevSlide');
+            const currentSlide = document.getElementById('currentSlide');
+            const nextSlide = document.getElementById('nextSlide');
+
+            // Update placeholder numbers
+            prevSlide.querySelector('.num').textContent = String(prevIndex + 1).padStart(2, '0');
+            currentSlide.querySelector('.num').textContent = String(currentIndex + 1).padStart(2, '0');
+            nextSlide.querySelector('.num').textContent = String(nextIndex + 1).padStart(2, '0');
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            currentIndex = index;
+            updateSlide();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            document.getElementById('currentSlide').classList.add('sliding-left');
+            setTimeout(() => {
+                document.getElementById('currentSlide').classList.remove('sliding-left');
+            }, 400);
+            updateSlide();
+        }
+
+        function prevSlide() {
+            currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+            document.getElementById('currentSlide').classList.add('sliding-right');
+            setTimeout(() => {
+                document.getElementById('currentSlide').classList.remove('sliding-right');
+            }, 400);
+            updateSlide();
+        }
+
+        // Event listeners
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevSlide').addEventListener('click', prevSlide);
+        document.getElementById('nextSlide').addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Initialize
+        if (slides.length > 0) {
+            initTimeline();
+            document.getElementById('totalNum').textContent = String(slides.length).padStart(2, '0');
+            updateSlide();
+        }
+    </script>
 </body>
 </html>
