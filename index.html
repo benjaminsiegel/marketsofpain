@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markets of Pain - A Historical Investigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .author-section {
+            background: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .author-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .author-bio {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .author-bio h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .author-bio p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .content-section {
+            background: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .slide-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .slide-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .slide-caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-photo {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/poppy-header.jpg" alt="Opium Poppy" class="header-image">
+        <div class="header-content">
+            <h1>Markets of Pain</h1>
+            <p class="subtitle">Tracing the Historical Trade in Opium</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="author-section">
+            <img src="images/author-photo.jpg" alt="Author Photo" class="author-photo">
+            <div class="author-bio">
+                <h2>About the Author</h2>
+                <p>
+                    This research explores the complex historical networks of the opium trade,
+                    examining the economic, social, and human dimensions of one of history's
+                    most controversial commodities. Through archival research and historical
+                    analysis, we trace the pathways of pain and profit that shaped empires
+                    and devastated communities.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>The Historical Trade</h2>
+            <p class="intro-text">
+                The opium trade represents one of the most significant and troubling chapters
+                in the history of global commerce. From the poppy fields of India to the
+                factories of Patna, from the trading houses of London to the ports of China,
+                this trade created vast fortunes while inflicting immeasurable suffering.
+            </p>
+
+            <div class="slide-container">
+                <img src="images/sample-slide.jpg" alt="Historical Opium Factory Plan" class="slide-image">
+                <p class="slide-caption">
+                    General Plan of the Opium Factory at Patna - A key site in the colonial opium trade
+                </p>
+            </div>
+
+            <p class="intro-text">
+                Through careful examination of historical documents, factory plans, and trade
+                records, this project illuminates the infrastructure and mechanisms that
+                sustained this global trade network and its lasting impact on societies across
+                the world.
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Markets of Pain. All rights reserved.</p>
+    </footer>
+</body>
+</html>
