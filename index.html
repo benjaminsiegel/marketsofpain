@@ -1085,6 +1085,158 @@
                 align-items: center;
             }
         }
+
+        /* Translation Section */
+        .translation-section {
+            padding: 4rem 2rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .translation-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .translation-links a {
+            color: var(--green);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .translation-links a:hover {
+            color: var(--green-light);
+        }
+
+        .translation-separator {
+            color: var(--cream-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--deep-black);
+            border: 1px solid var(--green);
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 3rem 2.5rem;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            color: var(--cream);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--green);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--green-light);
+        }
+
+        .modal-body h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2rem;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-body h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin: 2rem 0 1rem;
+            font-weight: 500;
+        }
+
+        .modal-body p {
+            color: var(--cream-dark);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .modal-body strong {
+            color: var(--cream);
+            font-weight: 600;
+        }
+
+        .modal-body a {
+            color: var(--green);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .modal-body a:hover {
+            color: var(--green-light);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 2.5rem 1.5rem;
+                max-height: 90vh;
+            }
+
+            .modal-close {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .modal-body h2 {
+                font-size: 1.6rem;
+            }
+
+            .translation-links {
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1168,6 +1320,19 @@
 
                 <div class="timeline-dots" id="timelineDots"></div>
             </div>
+        </div>
+    </section>
+
+    <!-- Translation Section -->
+    <section class="translation-section">
+        <div class="translation-links">
+            <a href="#" data-modal="modal-zh-cn" role="button" aria-label="View simplified Chinese translation information">简体中文</a>
+            <span class="translation-separator">|</span>
+            <a href="#" data-modal="modal-zh-tw" role="button" aria-label="View traditional Chinese translation information">繁體中文</a>
+            <span class="translation-separator">|</span>
+            <a href="#" data-modal="modal-tr" role="button" aria-label="View Turkish translation information">Türkçe</a>
+            <span class="translation-separator">|</span>
+            <a href="#" data-modal="modal-ja" role="button" aria-label="View Japanese translation information">日本語</a>
         </div>
     </section>
 
@@ -1636,6 +1801,181 @@
             // Preload initial batch of images
             preloadImages(0, 10);
         }
+    </script>
+
+    <!-- Modals -->
+    <!-- Simplified Chinese Modal -->
+    <div id="modal-zh-cn" class="modal" role="dialog" aria-labelledby="modal-zh-cn-title" aria-modal="true">
+        <div class="modal-content" role="document">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <h2 id="modal-zh-cn-title">【疼痛市场：鸦片、资本主义与止痛药的全球史】</h2>
+
+                <p>数个世纪以来，鸦片既是利润也是风险之源，其遗绪与成瘾问题、帝国主义、全球贸易及国家发展错综交织。相较于臭名昭著的非法鸦片交易，合法鸦片的历史——包括其栽种、提炼，以及协助建构近代医疗体系与塑造国家权威的角色——却始终未获关注。</p>
+
+                <p>本书取材自亚洲、欧洲与美国的档案资源，追索合法鸦片的全球轨迹：从印度、土耳其与澳洲的罂粟田与加工厂，一路延伸至现代医学的诊所与实验室。《疼痛市场：鸦片、资本主义与止痛药的全球史》（Markets of Pain: Opium, Capitalism, and the Global History of Painkillers）指出，无论是奥斯曼帝国还是土耳其共和国，都将罂粟视为国家资源及确保国际地位的手段。相比之下，在后殖民时期的印度，民族主义领导人最初拒斥鸦片的帝国主义遗绪，但随着冷战局势变动，又转而拥抱其战略价值。</p>
+
+                <p>这段历史的核心人物，是那些形塑合法鸦片贸易并设法克服其深远影响的栽种者、科学家、官僚与政策制定者。他们的行动与愿景，揭示了殖民帝国与后殖民国家如何造就全球制药产业，亦描绘出该产业在试图管控一种"无法彻底放弃的药物"时，所面临的根本困境。</p>
+
+                <p>本书揭露了一种看似边缘的作物，如何成为现代化过程中出人意料的推力、冷战地缘政治的工具，以及今日阿片类药物泛滥的先声。本杰明·罗伯特·席格（Benjamin Robert Siegel，波士顿大学历史系副教授）生动地结合鸦片种植园与工厂场景，并对科学与外交档案进行鞭辟入里的分析，发掘出这段被掩埋的历史，对理解当前的全球供应链、国际权力与公共卫生议题，具有迫切而深远的意义。</p>
+
+                <h3>与众不同的视角：</h3>
+                <p>对于中国读者而言，本书提供了一个崭新且意想不到的历史角度。有别于大众熟知"鸦片作为对抗中国的帝国主义工具"的叙事，《疼痛市场》揭示了鸦片如何在西方国家内部成为政治权力与国家控制的核心机制。本书展现土耳其、澳洲、美国等国如何竞相发展合法鸦片产业，以此作为现代化、建立国际地位与巩固国家权威的手段。这段被西方学界长期忽视的历史，解释了当代全球制药产业的形成，以及为何今日的阿片类药物危机，其实根植于西方国家自身的政策选择。</p>
+
+                <p><strong>出版社：</strong> Oxford University Press<br>
+                <strong>ISBN：</strong> 978-0197527825<br>
+                <strong>出版日期：</strong> 预定2026年4月出版</p>
+
+                <p><strong>版权洽询：</strong><br>
+                简体中文翻译版权请联系 Emma Gier: <a href="https://global.oup.com/academic/contactus/translation-contact/emma.gier?lang=en&cc=gb" target="_blank" rel="noopener">https://global.oup.com/academic/contactus/translation-contact/emma.gier?lang=en&cc=gb</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Traditional Chinese Modal -->
+    <div id="modal-zh-tw" class="modal" role="dialog" aria-labelledby="modal-zh-tw-title" aria-modal="true">
+        <div class="modal-content" role="document">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <h2 id="modal-zh-tw-title">【疼痛市場：鴉片、資本主義與止痛藥的全球史】</h2>
+
+                <p>數個世紀以來，鴉片同時是利潤與風險之源，其遺緒與成癮問題、帝國主義、全球貿易及國家發展錯綜交織。相較於惡名昭彰的非法鴉片交易，合法鴉片的歷史——包括其栽種、提煉，以及協助建構近代醫療體系與塑造國家權威的角色——卻始終未獲關注。</p>
+
+                <p>本書取材自亞洲、歐洲與美國的檔案資源，追索合法鴉片的全球軌跡：從印度、土耳其與澳洲的罌粟田與加工廠，一路延伸至現代醫學的診所與實驗室。《疼痛市場：鴉片、資本主義與止痛藥的全球史》（Markets of Pain: Opium, Capitalism, and the Global History of Painkillers）指出，無論是鄂圖曼帝國或土耳其共和國，都將罌粟視為國家資源及確保國際地位的手段。相比之下，在後殖民時期的印度，民族主義領導人最初拒斥鴉片的帝國主義遺緒，但隨著冷戰局勢變動，又轉而擁抱其戰略價值。</p>
+
+                <p>這段歷史的核心人物，是那些形塑合法鴉片貿易並設法克服其深遠影響的栽種者、科學家、官僚與政策制定者。他們的行動與願景，揭示了殖民帝國與後殖民國家如何造就全球製藥產業，亦描繪出該產業在試圖管控一種「無法徹底放棄的藥物」時，所面臨的根本困境。</p>
+
+                <p>本書揭露了一種看似邊緣的作物，如何成為現代化過程中出人意料的推力、冷戰地緣政治的工具，以及今日阿片類藥物氾濫的先聲。班傑明·羅伯特·席格（Benjamin Robert Siegel，波士頓大學歷史系副教授）生動地結合鴉片種植園與工廠場景，並對科學與外交檔案進行鞭辟入裡的分析，發掘出這段被掩埋的歷史，對理解當前的全球供應鏈、國際權力與公共衛生議題，具有迫切而深遠的意義。</p>
+
+                <h3>與眾不同的視角：</h3>
+                <p>對於華文讀者而言，本書提供了一個嶄新且意想不到的歷史角度。有別於大眾熟知「鴉片作為帝國主義侵華工具」的敘事，《疼痛市場》揭示了鴉片如何在西方國家內部成為政治權力與國家控制的核心機制。本書展現土耳其、澳洲、美國等國如何競相發展合法鴉片產業，以此作為現代化、建立國際地位與鞏固國家權威的手段。這段被西方學界長期忽視的歷史，解釋了當代全球製藥產業的形成，以及為何今日的阿片類藥物危機，其實根植於西方國家自身的政策選擇。</p>
+
+                <p><strong>出版社：</strong> Oxford University Press<br>
+                <strong>ISBN：</strong> 978-0197527825<br>
+                <strong>出版日期：</strong> 預定2026年4月出版</p>
+
+                <p><strong>版權洽詢：</strong><br>
+                繁體中文翻譯版權請聯繫 Junan Collins: <a href="https://global.oup.com/academic/contactus/translation-contact/junan.collins?lang=en&cc=gb" target="_blank" rel="noopener">https://global.oup.com/academic/contactus/translation-contact/junan.collins?lang=en&cc=gb</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Turkish Modal -->
+    <div id="modal-tr" class="modal" role="dialog" aria-labelledby="modal-tr-title" aria-modal="true">
+        <div class="modal-content" role="document">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <h2 id="modal-tr-title">AĞRI PİYASALARI: Afyon, Kapitalizm ve Ağrı Kesicilerin Küresel Tarihi</h2>
+
+                <p>Yüzyıllar boyunca afyon, hem kâr hem de risk kaynağı olmuş; mirası bağımlılık, emperyalizm, küresel ticaret ve devlet inşası süreçleriyle iç içe geçmiştir. Yasadışı afyon ticaretinin kötü şöhretine rağmen, yasal afyonun tarihi—ekimi, işlenmesi, modern tıp sistemlerinin inşası ve devlet otoritesinin şekillendirilmesindeki rolü—büyük ölçüde göz ardı edilmiştir.</p>
+
+                <p>Asya, Avrupa ve Amerika'daki arşiv kaynaklarından yararlanarak hazırlanan bu kitap, yasal afyonun küresel yörüngesini Hindistan, Türkiye ve Avustralya'daki haşhaş tarlaları ve işleme tesislerinden, modern tıbbın kliniklerine ve laboratuvarlarına kadar takip etmektedir. Ağrı Piyasaları: Afyon, Kapitalizm ve Ağrı Kesicilerin Küresel Tarihi (Markets of Pain: Opium, Capitalism, and the Global History of Painkillers), hem Osmanlı İmparatorluğu'nun hem de Türkiye Cumhuriyeti'nin haşhaşı ulusal bir kaynak ve uluslararası statü sağlama aracı olarak gördüğünü ortaya koymaktadır. Buna karşılık, sömürge sonrası Hindistan'da milliyetçi liderler başlangıçta afyonun emperyal mirasını reddetmiş, ancak değişen Soğuk Savaş jeopolitiği içinde onun stratejik değerini benimsemek durumunda kalmışlardır.</p>
+
+                <p>Yasal afyon ticaretini şekillendiren ve onun derin etkilerini yönetmeye çalışan yetiştiriciler, bilim insanları, bürokratlar ve politika yapıcılar bu tarihin merkezinde yer alır. Onların eylemleri ve vizyonları, sömürge imparatorluklarının ve sömürge sonrası devletlerin küresel ilaç endüstrisini nasıl yarattığını gözler önüne sermektedir. Aynı zamanda bu endüstrinin, tamamen vazgeçilemeyen bir ilacı kontrol etmeye çalışırken karşılaştığı temel ikilemleri de betimlemektedir.</p>
+
+                <p>Benjamin Robert Siegel (Boston Üniversitesi Tarih Bölümü Doçenti), afyon plantasyonlarını ve fabrikalarını canlı bir anlatımla birleştirirken, bilimsel ve diplomatik arşivleri derinlemesine analiz etmektedir. Yazar, görünüşte marjinal bir ürünün nasıl modernleşmenin beklenmedik bir itici gücü, Soğuk Savaş jeopolitiğinin bir aracı ve günümüz opioid krizinin habercisi haline geldiğini ortaya çıkarmaktadır. Bu çalışma, küresel tedarik zincirleri, uluslararası güç dengeleri ve halk sağlığı açısından acil ve geniş kapsamlı sonuçları olan, gölgede kalmış bir tarihi gün yüzüne çıkarmaktadır.</p>
+
+                <h3>Türk Okurlar İçin Benzersiz Bir Perspektif:</h3>
+                <p>Bu kitap, Türk okurlar için, ülkelerinin küresel ilaç sistemlerinin şekillenmesindeki merkezi rolünü ortaya koyan, şimdiye kadar yeterince anlatılmamış bir hikaye sunmaktadır. Batılı anlatılar afyon tarihini genellikle Çin veya Hint alt kıtasına odaklayarak ele alırken, Ağrı Piyasaları, Osmanlı İmparatorluğu'ndan Türkiye Cumhuriyeti'ne uzanan süreçte Türk devlet adamlarının, bilim insanlarının ve çiftçilerinin yasal afyon endüstrisini modern devlet inşası, ekonomik kalkınma ve uluslararası diplomasinin nasıl temel bir aracı haline getirdiğini göstermektedir. Kitap, Türkiye'nin haşhaş politikalarının sadece yerel bir mesele olmadığını; aksine 20. yüzyıl boyunca küresel ağrı kesici üretimini, Soğuk Savaş ittifaklarını ve uluslararası uyuşturucu kontrol rejimlerini şekillendirdiğini kanıtlamaktadır. Türk, Amerikan ve Avrupa arşivlerinden yararlanan yazar, Türkiye'nin bu alandaki stratejik önemini ve karmaşık diplomatik manevraların merkezindeki konumunu detaylandırmaktadır.</p>
+
+                <p><strong>Yayınevi:</strong> Oxford University Press<br>
+                <strong>ISBN:</strong> 978-0197527825<br>
+                <strong>Yayın Tarihi:</strong> Nisan 2026 (planlanan)</p>
+
+                <p><strong>Telif Hakları:</strong><br>
+                Türkçe çeviri hakları için lütfen Junan Collins ile iletişime geçiniz: <a href="https://global.oup.com/academic/contactus/translation-contact/junan.collins?lang=en&cc=gb" target="_blank" rel="noopener">https://global.oup.com/academic/contactus/translation-contact/junan.collins?lang=en&cc=gb</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese Modal -->
+    <div id="modal-ja" class="modal" role="dialog" aria-labelledby="modal-ja-title" aria-modal="true">
+        <div class="modal-content" role="document">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body">
+                <h2 id="modal-ja-title">【痛みの市場：アヘン、資本主義、鎮痛剤のグローバル・ヒストリー】</h2>
+
+                <p>何世紀にもわたり、アヘンは利益とリスクの源であり続け、その遺産は依存症、帝国主義、グローバル貿易、そして国家の発展と複雑に絡み合ってきました。悪名高い違法アヘン貿易とは対照的に、栽培や精製、近代医療システムの構築における役割、そして国家権威の形成といった「合法アヘン」の歴史は、これまで大きく見過ごされてきました。</p>
+
+                <p>アジア、ヨーロッパ、アメリカのアーカイブ資料を駆使した本書は、インド、トルコ、オーストラリアのケシ畑や加工工場から、近代医学の診療所や研究室に至るまで、合法アヘンのグローバルな軌跡を追跡します。『痛みの市場：アヘン、資本主義、鎮痛剤のグローバル・ヒストリー』（Markets of Pain: Opium, Capitalism, and the Global History of Painkillers）は、オスマン帝国とトルコ共和国の双方が、ケシを国家資源として、また国際的地位を確保する手段として扱ってきた事実を明らかにします。対照的に、脱植民地時代のインドでは、民族主義的指導者たちが当初アヘンの帝国主義的遺産を拒絶しましたが、冷戦下の地政学的力学が変化する中で、その戦略的価値を受け入れるようになります。</p>
+
+                <p>合法アヘン貿易を形成し、その深遠な影響を克服しようとした栽培者、科学者、官僚、政策立案者たちが、この歴史の中心にいます。彼らの行動とビジョンは、植民地帝国と脱植民地国家がいかにしてグローバル製薬産業を生み出したかを解明し、完全に放棄することのできない薬物を統制しようとする際に、同産業が直面する根本的なジレンマを描き出しています。</p>
+
+                <p>本書は、一見周縁的な作物が、いかにして近代化の予想外の推進力、冷戦地政学の道具、そして今日のオピオイド危機の前兆となったかを浮き彫りにします。ベンジャミン・ロバート・シーゲル（ボストン大学歴史学部准教授）は、アヘン農園と工場の実態を鮮やかに描き出し、科学的・外交的アーカイブを鋭く分析することで、グローバル・サプライチェーン、国際権力、公衆衛生に緊急かつ広範な影響を持つ、埋もれた歴史を発掘します。</p>
+
+                <h3>日本の読者への独自の視点：</h3>
+                <p>日本の読者にとって、本書は西洋諸国自身がアヘンをめぐって直面した複雑な政治的・経済的課題について、新たな理解を提供します。日本は満州、台湾、朝鮮におけるアヘン管理という独自の歴史的経験を持ちますが、『痛みの市場』は、トルコ、オーストラリア、アメリカなどの西洋諸国が、いかに合法アヘン産業を近代化、国際的威信、そして国家権威確立の中核的手段として発展させたかを明らかにします。本書は、20世紀を通じて国家がアヘンを統制し、利用し、正当化しようとした様々な戦略を比較分析することで、グローバル製薬産業の形成過程と、今日のオピオイド危機が西洋諸国自身の政策選択に根ざしていることを実証します。日本の経験を国際的文脈に位置づけ、薬物政策、国家権力、公衆衛生の交差点における普遍的なジレンマを浮き彫りにする一冊です。</p>
+
+                <p><strong>出版社：</strong> Oxford University Press<br>
+                <strong>ISBN：</strong> 978-0197527825<br>
+                <strong>出版予定日：</strong> 2026年4月</p>
+
+                <p><strong>翻訳権に関するお問い合わせ：</strong><br>
+                日本語翻訳権については Jenny Child までご連絡ください: <a href="https://global.oup.com/academic/contactus/translation-contact/jennifer.child?lang=en&cc=gb" target="_blank" rel="noopener">https://global.oup.com/academic/contactus/translation-contact/jennifer.child?lang=en&cc=gb</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalLinks = document.querySelectorAll('[data-modal]');
+            const modals = document.querySelectorAll('.modal');
+            const body = document.body;
+
+            // Open modal
+            modalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modalId = this.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        setTimeout(() => modal.classList.add('active'), 10);
+                        body.style.overflow = 'hidden';
+
+                        // Focus on close button for accessibility
+                        const closeBtn = modal.querySelector('.modal-close');
+                        if (closeBtn) closeBtn.focus();
+                    }
+                });
+            });
+
+            // Close modal function
+            function closeModal(modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    body.style.overflow = '';
+                }, 300);
+            }
+
+            // Close button click
+            modals.forEach(modal => {
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => closeModal(modal));
+                }
+
+                // Click outside to close
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modals.forEach(modal => {
+                        if (modal.classList.contains('active')) {
+                            closeModal(modal);
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
