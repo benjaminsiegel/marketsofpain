@@ -4,6 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markets of Pain | Benjamin Robert Siegel</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Markets of Pain">
+    <meta property="og:description" content="Opium, Capitalism, and the Global History of Painkillers by Benjamin Robert Siegel">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://marketsofpain.com/images/slide23.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://marketsofpain.com">
+    <meta property="og:site_name" content="Markets of Pain">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Markets of Pain">
+    <meta name="twitter:description" content="Opium, Capitalism, and the Global History of Painkillers by Benjamin Robert Siegel">
+    <meta name="twitter:image" content="https://marketsofpain.com/images/slide23.jpg">
+
+    <!-- Standard Meta Tags -->
+    <meta name="description" content="Opium, Capitalism, and the Global History of Painkillers by Benjamin Robert Siegel">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -60,6 +80,44 @@
             opacity: 0.025;
             z-index: 1000;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: var(--green);
+            color: var(--black);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            z-index: 1001;
+            text-decoration: none;
+            display: block;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: background 0.3s ease;
+        }
+
+        .announcement-bar:hover {
+            background: var(--green-light);
+        }
+
+        @media (max-width: 768px) {
+            .announcement-bar {
+                font-size: 0.85rem;
+                padding: 0.65rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .announcement-bar {
+                font-size: 0.75rem;
+                padding: 0.6rem 0.5rem;
+                line-height: 1.4;
+            }
         }
 
         /* Hero Section - Immersive Design */
@@ -1240,6 +1298,11 @@
     </style>
 </head>
 <body>
+    <!-- Announcement Bar -->
+    <a href="https://global.oup.com/academic/product/markets-of-pain-9780197527825" class="announcement-bar" target="_blank" rel="noopener">
+        30% Off Markets of Pain | Use Code: AAFLYG | Oxford University Press
+    </a>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
