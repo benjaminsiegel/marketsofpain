@@ -22,7 +22,10 @@
     <meta name="twitter:image" content="https://marketsofpain.com/images/slide23.jpg">
 
     <!-- Standard Meta Tags -->
-    <meta name="description" content="Opium, Capitalism, and the Global History of Painkillers by Benjamin Robert Siegel">
+    <meta name="description" content="Markets of Pain: Opium, Capitalism, and the Global History of Painkillers by Benjamin Robert Siegel. Oxford University Press, 2026. A sweeping history of the business of licit opium following cultivators, merchants, scientists, and policymakers from poppy fields to modern medicine.">
+    <meta name="author" content="Benjamin Robert Siegel">
+    <meta name="keywords" content="Markets of Pain, Benjamin Siegel, opium history, painkillers, pharmaceutical history, opioid crisis, Oxford University Press, global history, capitalism, drug policy">
+    <link rel="canonical" href="https://marketsofpain.com">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +39,44 @@
       gtag('js', new Date());
 
       gtag('config', 'G-EH9JEGZFS9');
+    </script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "Markets of Pain: Opium, Capitalism, and the Global History of Painkillers",
+      "author": {
+        "@type": "Person",
+        "name": "Benjamin Robert Siegel",
+        "url": "https://www.bu.edu/history/profile/benjamin-siegel/",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Boston University"
+        }
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Oxford University Press"
+      },
+      "isbn": "9780197527825",
+      "datePublished": "2026-04-15",
+      "description": "For centuries, opium has been a source of both profit and peril, its legacy entangled with addiction, imperialism, and the complex interplay of global trade and national development. Markets of Pain traces the global arc of licit opium from poppy fields and processing plants in India, Turkey, and Australia to the clinics and laboratories of modern medicine.",
+      "bookFormat": "https://schema.org/Hardcover",
+      "inLanguage": "en",
+      "url": "https://marketsofpain.com",
+      "image": "https://marketsofpain.com/images/slide23.jpg",
+      "genre": "History",
+      "about": ["Opium", "Pharmaceutical History", "Global Trade", "Capitalism", "Drug Policy"],
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/PreOrder",
+        "price": "34.95",
+        "priceCurrency": "USD",
+        "url": "https://global.oup.com/academic/product/markets-of-pain-9780197527825"
+      }
+    }
     </script>
 
     <style>
@@ -80,44 +121,6 @@
             opacity: 0.025;
             z-index: 1000;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* Announcement Bar */
-        .announcement-bar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: var(--green);
-            color: var(--black);
-            text-align: center;
-            padding: 0.75rem 1rem;
-            z-index: 1001;
-            text-decoration: none;
-            display: block;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            transition: background 0.3s ease;
-        }
-
-        .announcement-bar:hover {
-            background: var(--green-light);
-        }
-
-        @media (max-width: 768px) {
-            .announcement-bar {
-                font-size: 0.85rem;
-                padding: 0.65rem 0.75rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .announcement-bar {
-                font-size: 0.75rem;
-                padding: 0.6rem 0.5rem;
-                line-height: 1.4;
-            }
         }
 
         /* Hero Section - Immersive Design */
@@ -938,6 +941,72 @@
             background: var(--green-light);
         }
 
+        .discount-note {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .discount-note a {
+            color: var(--green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .discount-note a:hover {
+            color: var(--green-light);
+        }
+
+        /* In the News Section */
+        .news-section {
+            padding: 5rem 2rem;
+            background: var(--black);
+        }
+
+        .news-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .news-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .news-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(143, 168, 67, 0.1);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-title a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .news-title a:hover {
+            color: var(--green);
+        }
+
+        .news-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
         /* Details Section */
         .details-section {
             padding: 3rem 2rem;
@@ -1298,11 +1367,6 @@
     </style>
 </head>
 <body>
-    <!-- Announcement Bar -->
-    <a href="https://global.oup.com/academic/product/markets-of-pain-9780197527825" class="announcement-bar" target="_blank" rel="noopener">
-        30% Off Markets of Pain | Use Code: AAFLYG | Oxford University Press
-    </a>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
@@ -1416,6 +1480,21 @@
         </div>
     </section>
 
+    <!-- In the News Section -->
+    <section class="news-section">
+        <div class="news-container">
+            <div class="news-header">
+                <p class="section-subheader">Recent Coverage</p>
+                <h2 class="section-header">In the News</h2>
+            </div>
+
+            <div class="news-item">
+                <p class="news-title"><a href="https://www.bu.edu/articles/2026/how-the-legal-opium-market-led-to-an-opioid-crisis/" target="_blank" rel="noopener">How the Legal Opium Market Shaped Global Trade — and Led to an Opioid Crisis</a></p>
+                <p class="news-meta"><em>The Brink</em>, Boston University — April 2026</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Blurbs Section -->
     <section class="blurbs-section">
         <div class="blurbs-container">
@@ -1464,7 +1543,7 @@
         <div class="connect-container">
             <div class="connect-column">
                 <h3>Speaking & Events</h3>
-                <p>Event dates for Spring 2026 coming soon.</p>
+                <p>"Medicinal Opium" — UN Commission on Narcotic Drugs — March 2026</p>
                 <p>For speaking inquiries, please <a href="mailto:siegelb@bu.edu?subject=Markets%20of%20Pain%20-%20Inquiry">get in touch</a>.</p>
             </div>
             <div class="connect-column">
@@ -1498,6 +1577,7 @@
                 <a href="https://www.amazon.com/Markets-Pain-Capitalism-History-Painkillers/dp/0197527825" class="order-link" target="_blank" rel="noopener">Amazon</a>
                 <a href="https://bookshop.org/p/books/markets-of-pain-opium-capitalism-and-the-global-history-of-painkillers-associate-professor-of-history-benjamin-robert-siegel/e89ecfc619100379?ean=9780197527825&next=t" class="order-link" target="_blank" rel="noopener">Bookshop.org</a>
             </div>
+            <p class="discount-note">Use code <strong>AAFLYG</strong> for 30% off at <a href="https://global.oup.com/academic/product/markets-of-pain-9780197527825" target="_blank" rel="noopener">Oxford University Press</a>.</p>
         </div>
     </section>
 
