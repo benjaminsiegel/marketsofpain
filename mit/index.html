@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MIT Talk Working Draft</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  main { width: 100%; height: 100%; height: 100dvh; display: grid; place-items: center; }
+  #slide { display: block; width: 100%; height: 100%; object-fit: contain; }
+  nav { position: fixed; bottom: max(12px, env(safe-area-inset-bottom)); right: 12px; display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 6px; background: #111c; color: white; font: 14px system-ui, sans-serif; opacity: 0; transition: opacity .15s; }
+  body.controls nav, nav:hover, nav:focus-within { opacity: 1; }
+  button { min-width: 38px; min-height: 38px; border: 1px solid #777; border-radius: 4px; background: #222; color: white; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .35; cursor: default; }
+  button:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { nav { transition: none; } }
+</style>
+<body class="controls">
+<main aria-label="Presentation"><img id="slide" src="slides/01.png" alt="Slide 1 of 17" fetchpriority="high" draggable="false"></main>
+<nav aria-label="Slide controls">
+  <button id="previous" aria-label="Previous slide" title="Previous slide (Left arrow)">←</button>
+  <span id="position" aria-live="polite">1 / 17</span>
+  <button id="next" aria-label="Next slide" title="Next slide (Right arrow)">→</button>
+  <button id="fullscreen" aria-label="Enter full screen" title="Full screen (F)">⛶</button>
+</nav>
+<script>
+(() => {
+  const total = 17;
+  const slide = document.getElementById('slide');
+  const previous = document.getElementById('previous');
+  const next = document.getElementById('next');
+  const fullscreen = document.getElementById('fullscreen');
+  const position = document.getElementById('position');
+  const source = n => `slides/${String(n).padStart(2, '0')}.png`;
+  const fromHash = () => Number(location.hash.slice(1)) || 1;
+  let current = 1, timer;
+  const reveal = () => {
+    document.body.classList.add('controls');
+    clearTimeout(timer);
+    timer = setTimeout(() => document.body.classList.remove('controls'), 1800);
+  };
+  function show(n) {
+    current = Math.max(1, Math.min(total, Math.trunc(n)));
+    slide.src = source(current);
+    slide.alt = `Slide ${current} of ${total}`;
+    position.textContent = `${current} / ${total}`;
+    previous.disabled = current === 1;
+    next.disabled = current === total;
+    history.replaceState(null, '', `#${current}`);
+    for (const n of [current - 1, current + 1]) {
+      if (n >= 1 && n <= total) { const image = new Image(); image.src = source(n); }
+    }
+  }
+  async function toggleFullscreen() {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+    } catch { reveal(); }
+  }
+  previous.addEventListener('click', () => { show(current - 1); reveal(); });
+  next.addEventListener('click', () => { show(current + 1); reveal(); });
+  fullscreen.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', () => {
+    fullscreen.setAttribute('aria-label', document.fullscreenElement ? 'Exit full screen' : 'Enter full screen');
+  });
+  document.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowRight') { event.preventDefault(); show(current + 1); }
+    else if (event.key === 'ArrowLeft') { event.preventDefault(); show(current - 1); }
+    else if (event.key === 'Home') { event.preventDefault(); show(1); }
+    else if (event.key === 'End') { event.preventDefault(); show(total); }
+    else if (event.key.toLowerCase() === 'f') toggleFullscreen();
+  });
+  document.addEventListener('pointermove', reveal);
+  document.addEventListener('pointerdown', reveal);
+  window.addEventListener('hashchange', () => show(fromHash()));
+  show(fromHash()); reveal();
+})();
+</script>
+</body>
+</html>
